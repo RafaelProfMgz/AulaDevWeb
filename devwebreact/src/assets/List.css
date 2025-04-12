@@ -1,0 +1,260 @@
+/* List.css - Estilo Aprimorado */
+
+/* ------------------------- */
+/* --- Variáveis Globais --- */
+/* ------------------------- */
+:root {
+    --font-family-base:
+        -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+        sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --primary-color: #6a11cb; /* Roxo Gradiente Inicio */
+    --primary-color-dark: #570ca1;
+    --secondary-color: #2575fc; /* Azul Gradiente Fim */
+    --accent-color-edit: #ffc107; /* Amarelo */
+    --accent-color-edit-dark: #e0a800;
+    --accent-color-save: #28a745; /* Verde */
+    --accent-color-save-dark: #218838;
+    --accent-color-delete: #dc3545; /* Vermelho */
+    --accent-color-delete-dark: #c82333;
+    --accent-color-cancel: #6c757d; /* Cinza */
+    --accent-color-cancel-dark: #5a6268;
+
+    --text-color: #333;
+    --text-color-light: #555;
+    --text-color-on-primary: #ffffff;
+    --text-color-on-accent: #ffffff;
+    --text-color-on-edit: #212529; /* Texto escuro para botão amarelo */
+
+    --bg-color-container: #f8f9fa; /* Fundo container mais claro */
+    --bg-color-item: #ffffff; /* Fundo item branco */
+    --border-color-light: #e0e0e0; /* Borda sutil */
+    --border-color-focus: var(--primary-color);
+
+    --border-radius-base: 8px; /* Raio de borda base */
+    --box-shadow-base: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra mais suave */
+    --box-shadow-hover: 0 6px 20px rgba(0, 0, 0, 0.12);
+    --spacing-unit: 0.5rem; /* Unidade base de espaçamento (8px) */
+
+    --transition-speed: 0.2s;
+}
+
+/* ------------------------- */
+/* --- Estilos Gerais --- */
+/* ------------------------- */
+.list-container {
+    font-family: var(--font-family-base);
+    max-width: 600px; /* Um pouco mais largo */
+    margin: calc(var(--spacing-unit) * 5) auto; /* 40px auto */
+    padding: calc(var(--spacing-unit) * 4); /* 32px */
+    background-color: var(--bg-color-container);
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow-base);
+    color: var(--text-color);
+}
+
+.list-container h1 {
+    text-align: center;
+    color: var(--text-color);
+    margin-bottom: calc(var(--spacing-unit) * 4); /* 32px */
+    font-weight: 600;
+    font-size: 1.75rem; /* Maior */
+}
+
+/* ------------------------- */
+/* --- Formulário Add --- */
+/* ------------------------- */
+.add-task-form {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 2); /* 16px */
+    margin-bottom: calc(var(--spacing-unit) * 4); /* 32px */
+}
+
+/* Estilo base para inputs de texto (Add e Edit) */
+.add-task-form input[type="text"],
+.edit-mode input[type="text"] {
+    flex-grow: 1;
+    padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 2); /* 12px 16px */
+    border: 1px solid var(--border-color-light);
+    border-radius: var(--border-radius-base);
+    font-size: 1rem;
+    background-color: var(--bg-color-item);
+    color: var(--text-color);
+    transition:
+        border-color var(--transition-speed) ease,
+        box-shadow var(--transition-speed) ease;
+}
+
+.add-task-form input[type="text"]:focus,
+.edit-mode input[type="text"]:focus {
+    outline: none;
+    border-color: var(--border-color-focus);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color), 0.2); /* Foco visível */
+}
+
+/* Botão principal (Adicionar) */
+.add-task-form button {
+    padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 3); /* 12px 24px */
+    /* Gradiente sutil */
+    background-image: linear-gradient(
+        45deg,
+        var(--primary-color) 0%,
+        var(--secondary-color) 100%
+    );
+    color: var(--text-color-on-primary);
+    border: none;
+    border-radius: var(--border-radius-base);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.add-task-form button:hover {
+    opacity: 0.9;
+    box-shadow: var(--box-shadow-hover);
+    transform: translateY(-2px); /* Efeito sutil de elevação */
+}
+
+.add-task-form button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Foco visível para teclado */
+.add-task-form button:focus-visible {
+    outline: 2px solid var(--primary-color-dark);
+    outline-offset: 2px;
+}
+
+/* ------------------------- */
+/* --- Lista de Tarefas --- */
+/* ------------------------- */
+.task-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex; /* Usar flexbox para gap funcionar */
+    flex-direction: column;
+    gap: calc(var(--spacing-unit) * 2); /* 16px entre itens */
+}
+
+.task-item {
+    background-color: var(--bg-color-item);
+    padding: calc(var(--spacing-unit) * 2) calc(var(--spacing-unit) * 3); /* 16px 24px */
+    /* Removida borda, usamos sombra e espaçamento */
+    border-radius: var(--border-radius-base);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 3); /* 24px */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: box-shadow var(--transition-speed) ease;
+}
+
+.task-item:hover {
+    box-shadow: var(--box-shadow-hover); /* Leve destaque no hover */
+}
+
+.task-item span {
+    flex-grow: 1;
+    word-break: break-word;
+    color: var(--text-color-light);
+    line-height: 1.4; /* Melhor leitura */
+}
+
+/* ------------------------- */
+/* --- Botões de Ação --- */
+/* ------------------------- */
+.task-actions {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 1.5); /* 12px */
+    flex-shrink: 0;
+}
+
+/* Estilo base para todos os botões de ação e edição */
+.task-actions button,
+.edit-mode button {
+    padding: calc(var(--spacing-unit) * 1) calc(var(--spacing-unit) * 2); /* 8px 16px */
+    border: none;
+    border-radius: var(--border-radius-base);
+    cursor: pointer;
+    font-size: 0.875rem; /* Levemente menor */
+    font-weight: 500;
+    transition: all var(--transition-speed) ease;
+    display: flex; /* Para alinhar ícone + texto se adicionar depois */
+    align-items: center;
+    gap: var(--spacing-unit); /* Espaço para ícone */
+}
+
+/* Foco visível para botões de ação */
+.task-actions button:focus-visible,
+.edit-mode button:focus-visible {
+    outline-offset: 2px;
+}
+
+/* Estilos específicos por botão */
+.edit-btn {
+    background-color: var(--accent-color-edit);
+    color: var(--text-color-on-edit);
+}
+.edit-btn:hover {
+    background-color: var(--accent-color-edit-dark);
+}
+.edit-btn:focus-visible {
+    outline: 2px solid var(--accent-color-edit-dark);
+}
+
+.remove-btn {
+    background-color: var(--accent-color-delete);
+    color: var(--text-color-on-accent);
+}
+.remove-btn:hover {
+    background-color: var(--accent-color-delete-dark);
+}
+.remove-btn:focus-visible {
+    outline: 2px solid var(--accent-color-delete-dark);
+}
+
+.save-btn {
+    background-color: var(--accent-color-save);
+    color: var(--text-color-on-accent);
+}
+.save-btn:hover {
+    background-color: var(--accent-color-save-dark);
+}
+.save-btn:focus-visible {
+    outline: 2px solid var(--accent-color-save-dark);
+}
+
+/* Botão Cancelar - Estilo secundário (outline) */
+.cancel-btn {
+    background-color: transparent;
+    color: var(--accent-color-cancel);
+    border: 1px solid var(--accent-color-cancel);
+}
+.cancel-btn:hover {
+    background-color: var(--accent-color-cancel);
+    color: var(--text-color-on-accent);
+}
+.cancel-btn:focus-visible {
+    outline: 2px solid var(--accent-color-cancel-dark);
+}
+
+/* ------------------------- */
+/* --- Modo de Edição --- */
+/* ------------------------- */
+.edit-mode {
+    display: flex;
+    align-items: center;
+    gap: calc(var(--spacing-unit) * 1.5); /* 12px */
+    width: 100%;
+}
+
+/* Placeholder para quando não há tarefas */
+.task-list p {
+    text-align: center;
+    color: var(--text-color-light);
+    padding: var(--spacing-unit) * 4; /* 32px */
+    font-style: italic;
+}
