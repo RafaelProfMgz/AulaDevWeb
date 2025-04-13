@@ -1,0 +1,11 @@
+Links dos trabalhos: 
+
+
+Repositório:
+https://github.com/RafaelProfMgz/AulaDevWeb
+
+Hospedados:
+
+Vue: https://aula-dev-web-teal.vercel.app/
+
+React: https://aula-dev-web-4rnu.vercel.app/
